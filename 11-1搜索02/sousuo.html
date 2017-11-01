@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style type="text/css">
+    	.row{
+    		width: 100%;
+    	}
+    	.bottom {
+    		width: 600px;
+    		margin-top: 100px;
+    		margin-left: 100px;
+    	}
+    	.bottom div{
+    		width: 600px;
+    		height: 50px;
+    		border: 1px solid red;
+    	}
+    	
+    </style>
+  </head>
+  <body>
+		
+		<div class="row">
+	  <div class="col-lg-6">
+	    <div class="input-group">
+	      <input type="text" class="form-control" placeholder="Search for..." id="ipt">
+	      <span class="input-group-btn">
+	        <button type="button" class="btn btn-primary" id="btn">搜索</button>
+	      </span>
+	    </div>
+	  </div>
+	  <div class="bottom">
+	  	
+	  </div>
+	</div>
+		<script type="text/javascript">
+			$(function(){
+				$('#btn').click(function(){
+					var ipt=$('#ipt').val()
+					$.ajax({
+						url:'http://localhost:3000/search',
+						type:'POST',
+						data:{idA:ipt},
+						success:function(e){
+							var str="";
+							for(var i in e){
+								str+='<div><p>'+e[i].name+'</p><p>'+e[i].datai+'</p></div>'
+							}
+							$('.bottom').html(str)
+						}
+						
+					})
+				})
+				
+				
+			})
+			
+		</script>
+
+    
+    
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
